@@ -107,7 +107,7 @@ ESP-IDF (Espressif IoT Development Framework) is the complete set of tools neede
         }
         ```
     * *NOTE: The above compiler paths assume that you have installed ESP-IDF version 5.5.2, which was the latest stable version at the time of writing. If you have installed another version, you will need to find the correct path to the compiler executable and adjust the `"compilerPath"` entry.*
-4. Also create a file `.vscode/settings.json` with the following content:
+4. Also create a file `.vscode/settings.json` with the following content (You may need to change the python's version number in IDF_PYTHON_ENV_PATH based on your installed python):
     * For Windows:
         ```json
         {
