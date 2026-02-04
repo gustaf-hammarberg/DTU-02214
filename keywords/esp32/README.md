@@ -173,7 +173,7 @@ In the ESP-IDF terminal, enter `idf.py build` to build the project. It may take 
 
 ## 5. Flash and run the application
 
-1. Connect the board to your computer with a USB-C cable. Verify that the red LED lights up (as it always does for 30 seconds on connection). WSL users need to install usbipd to connect get access to USB devices as expalined in https://learn.microsoft.com/en-us/windows/wsl/connect-usb webpage.
+1. Connect the board to your computer with a USB-C cable. Verify that the red LED lights up (as it always does for 30 seconds on connection). WSL users need to install usbipd to get access to USB devices, as expalined in https://learn.microsoft.com/en-us/windows/wsl/connect-usb webpage.
 2. In the ESP-IDF terminal, enter `idf.py flash monitor` to flash and run the application on the board. After the application has started, you should see output like this:
     ```
     I (1164) Inference: Amplitude:   130, Other: 0.90, Yes: 0.01, No: 0.09
