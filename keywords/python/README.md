@@ -41,7 +41,7 @@ Create a virtual environment for the course as follows:
 ## 3. Install a Python IDE
 
 Install an IDE for editing Python code, for example Visual Studio Code (VS Code) from https://code.visualstudio.com/download with the Python extension. You're welcome to use any other Python IDE that you prefer - another good option is [PyCharm](https://www.jetbrains.com/pycharm/).
- * *In VS Code, I recommend setting `python.analysis.typeCheckingMode` to `off` in your user settings to avoid false error squiggles in the editor, since the Python extension isn't capable of handling TensorFlow types. You can open the user settings by pressing `Ctrl+Shift+P` (Windows/Linux) or `Command+Shift+P` (Mac) and enter `Preferences: Open User Settings (JSON)`, then find and change the setting `"python.analysis.typeCheckingMode"` to `"off"`.*
+ * *In VS Code, I recommend setting `python.analysis.typeCheckingMode` to `off` in your user settings to avoid false error squiggles in the editor, since the Python extension isn't capable of handling TensorFlow types. You can open the user settings by pressing `Ctrl+Shift+P` (Windows/Linux) or `Command+Shift+P` (Mac) and enter `Preferences: Open User Settings (JSON)` (WSL users enter `Preferences: Open Remote Settings (JSON)`), then find and change the setting `"python.analysis.typeCheckingMode"` to `"off"`.*
 
 ## 4. Open and configure the Keyword Spotter Python project
 
