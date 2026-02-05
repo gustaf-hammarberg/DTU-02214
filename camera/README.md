@@ -48,5 +48,7 @@ This lab includes a very simple application for capturing images with the ESP32-
     ```
     python main.py --port <port> --output-path <output-path>
     ```
+    * For Windows, <port> should be `COM3` or similar.
+    * For Mac and Linux, <port> should be `/dev/ttyACM0` or similar.
     You should see a small window with the camera feed.
 5. Start capturing images according to your data collection plan.

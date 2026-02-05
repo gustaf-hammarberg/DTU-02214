@@ -40,15 +40,18 @@ Create a virtual environment for the course as follows:
 
 ## 3. Install a Python IDE
 
-Install an IDE for editing Python code, for example Visual Studio Code (VS Code) from https://code.visualstudio.com/download with the Python extension. You're welcome to use any other Python IDE that you prefer - another good option is [PyCharm](https://www.jetbrains.com/pycharm/).
- * *In VS Code, I recommend setting `python.analysis.typeCheckingMode` to `off` in your user settings to avoid false error squiggles in the editor, since the Python extension isn't capable of handling TensorFlow types. You can open the user settings by pressing `Ctrl+Shift+P` (Windows/Linux) or `Command+Shift+P` (Mac) and enter `Preferences: Open User Settings (JSON)`, then find and change the setting `"python.analysis.typeCheckingMode"` to `"off"`.*
+1. Install an IDE for editing Python code, for example Visual Studio Code (VS Code) from https://code.visualstudio.com/download. You're welcome to use any other Python IDE that you prefer - another good option is [PyCharm](https://www.jetbrains.com/pycharm/).
+2. If you use VS Code, install the Python extension.
+    * *I recommend setting `python.analysis.typeCheckingMode` to `off` in your user settings to avoid false error squiggles in the editor, since the Python extension isn't capable of handling TensorFlow types. You can open the user settings by pressing `Ctrl+Shift+P` (Windows/Linux) or `Command+Shift+P` (Mac) and enter `Preferences: Open User Settings (JSON)` (WSL users enter `Preferences: Open Remote Settings (JSON)`), then find and change the setting `"python.analysis.typeCheckingMode"` to `"off"`.*
 
 ## 4. Open and configure the Keyword Spotter Python project
 
-1. Open the folder `labs/keywords/python` in the IDE.
-2. Configure the project to use the virtual environment that you created above.
-    * *In VS Code, you can click the Python environment indicator in the bottom right corner of the window, select `Browse...` and select the Python executable `.venv\Scripts\python.exe` (Windows) or `.venv/bin/python3` (Mac/Linux) under the `.venv` folder of the virtual environment that you created in step 2.*
-3. Open a terminal in the IDE.
+1. Open the folder *repository root*`/keywords/python` in the IDE.
+2. Configure the project to use the virtual environment that you created above. In VS Code:
+    * Click the Python environment indicator in the bottom right corner of the window (the button shows the version of Python). If you do not see the indicator, ensure that the Python extension is installed and enabled. You may need to open a Python file to activate the indicator.
+    * Select `Browse...` (or alternatively `Enter interpreter path...` and then `Find...` to open the `Select Python interpreter` window).
+    * Select the Python executable `.venv\Scripts\python.exe` (Windows) or `.venv/bin/python3` (Mac/Linux) under the `.venv` folder of the virtual environment that you created in the step "2. Create the virtual environment" above.
+3. Open a terminal in the IDE. Do not use an already opened terminal.
 4. Verify that the correct virtual environment is activated by checking that this command outputs the correct path to its `.venv` folder:
     ```sh
     python -c "import sys; print(sys.prefix)"
@@ -60,7 +63,7 @@ Install an IDE for editing Python code, for example Visual Studio Code (VS Code)
 
 ## 5. Run the training script
 
-1. Make sure that your terminal is in the `labs/keywords/python` folder.
+1. Make sure that your terminal is in the *repository root*`/keywords/python` folder.
 2. Run the training script:
     ```sh
     python main.py

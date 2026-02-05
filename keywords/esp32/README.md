@@ -45,7 +45,7 @@ ESP-IDF (Espressif IoT Development Framework) is the complete set of tools neede
 
 *NOTE: The VS Code Marketplace also has an `ESP-IDF` extension, which helps with the following configuration. However, unfortunately, it also does much more than that, and my experience with this extension has not been great. For this reason, this section describes a minimal manual setup for VS Code IntelliSense and a terminal with all necessary commands.*
 
-1. Open the folder `labs/keywords/esp32` in VS Code. If you open a C++ file like `main/main.cpp`, you will see error squiggles in the code. After proper configuration and a successful build, these error squiggles will disappear.
+1. Open the folder *repository root*`/keywords/esp32` in VS Code. If you open a C++ file like `main/main.cpp`, you will see error squiggles in the code. After proper configuration and a successful build, these error squiggles will disappear.
 2. Open VS Code `settings.json` for your user (`Ctrl/Command+Shift+P` and type `Preferences: Open User Settings (JSON)` (WSL users type `Preferences: Open Remote Settings (JSON)`) and add the following lines the existing JSON object (between the outer `{}`)):
     * For Windows:
         ```json
@@ -57,7 +57,7 @@ ESP-IDF (Espressif IoT Development Framework) is the complete set of tools neede
         "idf.espIdfPath": "${env:HOME}/esp/esp-idf",
         "idf.toolsPath": "${env:HOME}/.espressif",
         ```
-3. Under `labs/keywords/esp32`, create a file `.vscode/c_cpp_properties.json` and paste the following content:
+3. Under *repository root*`/keywords/esp32`, create a file `.vscode/c_cpp_properties.json` and paste the following content:
     * For Windows:
         ```json
         {
@@ -138,7 +138,7 @@ ESP-IDF (Espressif IoT Development Framework) is the complete set of tools neede
           "terminal.integrated.defaultProfile.osx": "ESP-IDF (zsh)"
         }
         ```
-    * For Linux:
+    * For Linux (You may need to adapt the Python version number in the `"IDF_PYTHON_ENV_PATH"` setting depending on your setup - check inside `~/.espressif/python_env/`):
         ```json
         {
           "terminal.integrated.profiles.linux": {
@@ -174,6 +174,7 @@ In the ESP-IDF terminal, enter `idf.py build` to build the project. It may take 
 ## 5. Flash and run the application
 
 1. Connect the board to your computer with a USB-C cable. Verify that the red LED lights up (as it always does for 30 seconds on connection).
+    * *WSL users need to install `usbipd` to get access to USB devices, as explained in https://learn.microsoft.com/en-us/windows/wsl/connect-usb.*
 2. In the ESP-IDF terminal, enter `idf.py flash monitor` to flash and run the application on the board. After the application has started, you should see output like this:
     ```
     I (1164) Inference: Amplitude:   130, Other: 0.90, Yes: 0.01, No: 0.09
