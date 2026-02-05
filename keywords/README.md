@@ -25,10 +25,9 @@ The Python and ESP32 parts are further detailed in their own README files:
 After verifying that the keyword spotter works on your board, look at the code and answer the following questions:
 
 1. What's the dimensionality (the total number of features) of a training example input before and after preprocessing?
-2. What would the shape of `x_all` be if we used two-second audio clips instead of one-second?
-3. Although inference is primarily associated with the final application in C++, inference also takes place in the training Python code. Identify the Python lines in `main.py` that perform inference.
-4. Name at least one reason for why the generated model file `python/gen/model.tflite` is so much smaller than `python/gen/model.keras`.
-5. Identify the C++ code lines (file and line numbers) that perform the following parts of the inference pipeline:
+2. Although inference is primarily associated with the final application in C++, inference also takes place in the training Python code. Identify the Python lines in `main.py` that perform inference.
+3. Name at least one reason for why the generated model file `python/gen/model.tflite` is so much smaller than `python/gen/model.keras`.
+4. Identify the C++ code lines (file and line numbers) that perform the following parts of the inference pipeline:
     * Data acquisition
     * Preprocessing
     * Inference
