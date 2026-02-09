@@ -1,6 +1,6 @@
 # Lab 2: Image Data Collection with ESP32-S3 Sense
 
-The importance of a good dataset for machine learning can't be overstated, and the quality of your model is directly dependent on the quality of the data it was trained on. In order to achieve a reliable, representative, balanced and documented dataset, careful planning before data collection is essential.
+The importance of a good dataset for machine learning can't be overstated, and the quality of your model is directly dependent on the quality of the data it was trained on. In order to achieve a representative, balanced, reliable, and documented dataset, careful planning before data collection is essential.
 
 In this lab, you will write a data collection plan with labeling guidelines for a computer vision application of your choice. If you have decided on an application to build for the course project, you're welcome to use that application here and make your data collection plan part of your project documentation. After you have made a plan, you will use the provided ESP32 and Python applications to capture some images according to the plan. *Note that a two-hour session is not enough for writing a complete plan and building a complete dataset, so aim for spending one hour on each part, only to get started.*
 
@@ -31,8 +31,10 @@ When you're done with your data collection plan and labeling guidelines, you're 
 This lab includes a very simple application for capturing images with the ESP32-S3 Sense board and transferring and saving them on your computer. It consists of an ESP32 application in the `esp32` folder and a Python application in the `python` folder, meant to be run together:
  * `esp32`: This application initializes the camera, waits for an incoming 'S' character on the serial port, and then takes one 320x200 RGB565 photo every second and sends the raw image bytes over the serial port, preceded by the preamble sequence `"\n===FRAME===\n"`.
  * `python`: This application opens a window, sends 'S' on the serial port, and then receives and displays the incoming images in the window. Whenever the user presses a digit on the keyboard ('0'-'9'), the latest image is saved to a folder named with the digit.
- 
-1. `cd` into the `esp32` folder and build, flash and run the application.
+
+1. Copy the files from `/keywords/esp32/.vscode` (that you created last week) to `/camera/esp32/.vscode` to set up the ESP-IDF terminal and tools in VS Code.
+2. Open the `/camera/esp32` folder in VS Code.
+3. In the ESP-IDF terminal in VS Code, build, flash and run the application.
     ```
     idf.py build
     idf.py flash monitor
@@ -42,13 +44,13 @@ This lab includes a very simple application for capturing images with the ESP32-
     I (1262) CAMERA: Camera initialized: 320x240 RGB565.
     Send 'S' to start.
     ```
-2. Stop the monitor (`Ctrl/Command+[` or similar) to release the serial port. NOTE: Do not send 'S' in the terminal - the application will start dumping image data into your terminal, and you might have trouble stopping the monitor. The Python application will send the 'S' to start the capture.
-3. Open the `python` folder in your Python IDE, select your virtual environment for it, and install dependencies from `requirements.txt`.
-4. Run the Python application:
+4. Stop the monitor (`Ctrl/Command+[` or similar) to release the serial port. NOTE: Do not send 'S' in the terminal - the application will start dumping image data into your terminal, and you might have trouble stopping the monitor. The Python application will send the 'S' to start the capture.
+5. Open the `/camera/python` folder in your Python IDE, select your virtual environment for it, and install dependencies from `requirements.txt`.
+6. Run the Python application:
     ```
     python main.py --port <port> --output-path <output-path>
     ```
-    * For Windows, <port> should be `COM3` or similar.
-    * For Mac and Linux, <port> should be `/dev/ttyACM0` or similar.
+    * For Windows, `<port>` should be `COM3` or similar.
+    * For Mac and Linux, `<port>` should be `/dev/ttyACM0` or similar.
     You should see a small window with the camera feed.
-5. Start capturing images according to your data collection plan.
+7. Start capturing images according to your data collection plan.

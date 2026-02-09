@@ -9,8 +9,8 @@ This lab demonstrates the entire workflow for building a keyword spotter that de
 
 For this lab, you will need:
  * A computer running Windows, Linux or MacOS.
- * A Seeed Studio XIAO ESP32-S3 Sense board including the camera+microphone extension board.
- * A USB-C cable to connect the board to your computer.
+ * A Seeed Studio XIAO ESP32-S3 Sense board including the camera+microphone extension board. You can borrow a board during the lab, or you can buy it at for example the [Seeed Studio Store](https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html) or [Ardustore.dk](https://ardustore.dk/produkt/seeeduino-xiao-esp32-s3-cam-sense-udviklingsboard).
+ * A USB-C cable to connect the board to your computer. You can also borrow this during the lab.
 
 The lab is divided into two parts:
  * The Python part, which downloads and preprocesses the training data, trains the model, and generates C code that will be included in the microcontroller application.
@@ -27,7 +27,7 @@ After verifying that the keyword spotter works on your board, look at the code a
 1. What's the dimensionality (the total number of features) of a training example input before and after preprocessing?
 2. Although inference is primarily associated with the final application in C++, inference also takes place in the training Python code. Identify the Python lines in `main.py` that perform inference.
 3. Name at least one reason for why the generated model file `python/gen/model.tflite` is so much smaller than `python/gen/model.keras`.
-4. In the ESP32 project, identify the C++ code lines (file and line numbers) that perform the following parts of the inference pipeline:
+4. In the ESP32 project, identify the C++ code lines (file and line number(s)) that perform the following parts of the inference pipeline:
     * Data acquisition
     * Preprocessing
     * Inference

@@ -16,9 +16,9 @@ This part of the lab runs the entire training pipeline for the Keyword Spotter, 
 6. *Evaluate the converted model*. This function calculates and prints performance metrics for the model to the console.
 7. *Generate a test case*. This function takes a randomly chosen sound file and the TFLite model to generate test vectors for use in inference pipeline tests in C. The purpose is to verify that the preprocessing, quantization and inference produce equivalent results in the C code as in Python. The test vectors are dumped in a `.h` file in the `../esp32/main` folder for inclusion in the microcontroller application, which will run the test on startup and abort if the test fails.
 
-## 1. Install Python 3.13
+## 1. Install Python 3.12 or 3.13
 
-Install Python 3.13:
+Install Python 3.12 or 3.13:
 
  * On Windows, download the Python 3.13 installer from https://www.python.org/downloads/.
  * On Mac and Linux, open a terminal and enter:
@@ -26,7 +26,7 @@ Install Python 3.13:
    sudo apt install -y python3 python3-venv python3-pip python-is-python3
    ```
 
-Note that TensorFlow, which is the machine learning library that we will use, is currently not compatible with Python 3.14, so make sure you install version 3.13. If you already have Python of any version between and including 3.10 and 3.13 installed on your computer, you can skip this step.
+Note that TensorFlow, which is the machine learning library that we will use, is currently not compatible with Python 3.14, so make sure you install version 3.12 or 3.13. If you already have Python of any version between and including 3.10 and 3.13 installed on your computer, you can skip this step.
 
 ## 2. Create a virtual environment
 
@@ -40,7 +40,7 @@ Create a virtual environment for the course as follows:
 
 ## 3. Install a Python IDE
 
-1. Install an IDE for editing Python code, for example Visual Studio Code (VS Code) from https://code.visualstudio.com/download. You're welcome to use any other Python IDE that you prefer - another good option is [PyCharm](https://www.jetbrains.com/pycharm/).
+1. Install an IDE for editing Python code, for example Visual Studio Code (VS Code) from https://code.visualstudio.com/download. Ubuntu/Debian users can try `sudo snap install code --classic`. You're welcome to use any other Python IDE that you prefer - another good option is [PyCharm](https://www.jetbrains.com/pycharm/).
 2. If you use VS Code, install the Python extension.
     * *I recommend setting `python.analysis.typeCheckingMode` to `off` in your user settings to avoid false error squiggles in the editor, since the Python extension isn't capable of handling TensorFlow types. You can open the user settings by pressing `Ctrl+Shift+P` (Windows/Linux) or `Command+Shift+P` (Mac) and enter `Preferences: Open User Settings (JSON)` (WSL users enter `Preferences: Open Remote Settings (JSON)`), then find and change the setting `"python.analysis.typeCheckingMode"` to `"off"`.*
 
@@ -49,7 +49,7 @@ Create a virtual environment for the course as follows:
 1. Open the folder *repository root*`/keywords/python` in the IDE.
 2. Configure the project to use the virtual environment that you created above. In VS Code:
     * Click the Python environment indicator in the bottom right corner of the window (the button shows the version of Python). If you do not see the indicator, ensure that the Python extension is installed and enabled. You may need to open a Python file to activate the indicator.
-    * Select `Browse...` (or alternatively `Enter interpreter path...` and then `Find...` to open the `Select Python interpreter` window).
+    * Select `Browse...` (alternatively `Enter interpreter path...` and then `Find...`) to open the `Select Python interpreter` window.
     * Select the Python executable `.venv\Scripts\python.exe` (Windows) or `.venv/bin/python3` (Mac/Linux) under the `.venv` folder of the virtual environment that you created in the step "2. Create the virtual environment" above.
 3. Open a terminal in the IDE. Do not use an already opened terminal.
 4. Verify that the correct virtual environment is activated by checking that this command outputs the correct path to its `.venv` folder:

@@ -1,0 +1,15 @@
+.idea
+.venv
+.vscode
+__pycache__
+build
+data
+gen
+managed_components
+models
+temp
+dependencies.lock
+sdkconfig
+model.c
+model.h
+test_case.h
