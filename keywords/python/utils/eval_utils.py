@@ -32,6 +32,9 @@ def print_confusion_matrix(y_true: np.ndarray, y_pred: np.ndarray, class_labels:
 
     # Determine column width
     col_width = max(len(label) for label in class_labels) + 1
+    num_digits = len(str(np.max(cm)))
+    if (num_digits + 1) > col_width:
+        col_width = num_digits + 1
     
     # Print confusion matrix header
     print('Confusion matrix (predicted as columns, actual as rows):')

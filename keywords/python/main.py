@@ -1,19 +1,23 @@
 import os
 import shutil
 import ssl
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import tensorflow as tf
 import keras
 from keras.models import Sequential
-from keras.layers import Conv1D, MaxPooling1D, Dropout, Flatten, Dense
+from keras.layers import Input, Conv1D, MaxPooling1D, Dropout, Flatten, Dense
+from keras.callbacks import EarlyStopping, ModelCheckpoint
+from keras.optimizers import Adam
+
 from generate_test_case import generate_test_case
 from preprocess import *
 from utils.export_tflite import write_model_h_file, write_model_c_file
 from utils.eval_utils import compute_precision_recall_f1, print_confusion_matrix
 
 # Minimize TensorFlow logging
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.get_logger().setLevel('ERROR')
 
+# Paths and settings
 DATA_DIR = '../data/'
 GEN_DIR = 'gen/'
 MODEL_C_PATH = '../esp32/main/model.c'
@@ -76,7 +80,8 @@ def train_model(x_train: np.ndarray, y_train: np.ndarray, x_val: np.ndarray, y_v
     # Build and compile model
     print('Building model...')
     model = Sequential([
-        Conv1D(16, 5, activation='relu', input_shape=(SPECTROGRAM_WIDTH, SPECTROGRAM_HEIGHT)),  # Output shape (58, 16)
+        Input(shape=(SPECTROGRAM_WIDTH, SPECTROGRAM_HEIGHT)),
+        Conv1D(16, 5, activation='relu'),  # Output shape (58, 16)
         MaxPooling1D(2),  # Output shape (29, 16)
         Dropout(0.1),
         Conv1D(32, 5, activation='relu'),  # Output shape (25, 32)
@@ -88,17 +93,18 @@ def train_model(x_train: np.ndarray, y_train: np.ndarray, x_val: np.ndarray, y_v
         Flatten(),  # Output shape (160)
         Dense(NUM_CLASSES, activation='softmax')  # Output shape (3)
     ])
-    model.compile(optimizer=keras.optimizers.Adam(learning_rate=0.001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer=Adam(learning_rate=0.001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
     # Print model summary
     model.summary()
 
     # Train model with early stopping; save best model
     print('Training model...')
-    early_stopping = keras.callbacks.EarlyStopping(monitor='val_loss', patience=16)
-    model_checkpoint = keras.callbacks.ModelCheckpoint(GEN_DIR + 'model.keras', monitor='val_loss', save_best_only=True)
-    model.fit(x_train, y_train, epochs=100, batch_size=64, validation_data=(x_val, y_val),
-              callbacks=[early_stopping, model_checkpoint])
+    callbacks = [
+        EarlyStopping(monitor='val_loss', patience=16, restore_best_weights=True),
+        ModelCheckpoint(GEN_DIR + 'model.keras', monitor='val_loss', save_best_only=True)
+    ]
+    model.fit(x_train, y_train, epochs=100, batch_size=64, validation_data=(x_val, y_val), callbacks=callbacks)
 
     # Load and return best model
     model = keras.models.load_model(GEN_DIR + 'model.keras')
